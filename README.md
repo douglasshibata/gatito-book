@@ -1,14 +1,14 @@
 # GatitoBook
 
-Projeto Desenvolvido em Angular versão 12, a partir da aula da Alura.
+Projeto Desenvolvido em Angular com o auxílio da aula da Plataforma da Alura, na formação Angular.
 
 
 ### Requisitos
-* nodejs
+* Node.js
 * angular-cli
   * ```bash
     npm i -g @angular/cli
-
+    ```
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
@@ -39,6 +39,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ### Build docker image
+
 ```bash
 docker build -t gatito-book .
 ```
