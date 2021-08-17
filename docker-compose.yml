@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  gatitobook:
+    image: gatito-book
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8081:80

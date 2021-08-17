@@ -1,5 +1,16 @@
 # GatitoBook
 
+Projeto Desenvolvido em Angular versão 12, a partir da aula da Alura.
+
+
+### Requisitos
+* nodejs
+* angular-cli
+  * ```bash
+    npm i -g @angular/cli
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
 
 ## Development server
@@ -25,3 +36,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+### Build docker image
+```bash
+docker build -t gatito-book .
+```
+
+### Run With Docker
+
+```bash
+docker-compose up -d
+```
+
+```bash
+docker run -dp 8081:80  gatito-book
+```
+
+
