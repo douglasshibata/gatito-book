@@ -30,12 +30,14 @@ export class NovoUsuarioComponent implements OnInit {
         fullName: ['', [Validators.required, Validators.minLength(4)]],
         userName: [
           '',
+          // Validação do campo userName
           [minusculoValidator],
           // Executa a validação
           [this.usuarioExistenteServive.usuarioJaExite()],
         ],
         password: [''],
       },
+      // Validação do fomrulpario
       {
         validators: [usuarioSenhaIguaisValidator],
       }
@@ -43,7 +45,7 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   cadastrar() {
-    if (this.novoUsuarioForm.valid) {
+    if (this.novoUsuarioForm.valid) { // Verificando se o fomrulpario está válido
       const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
       this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
         () => {
