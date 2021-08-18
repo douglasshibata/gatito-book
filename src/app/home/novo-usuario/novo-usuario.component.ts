@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { minusculoValidator } from './minusculo.validator';
 import { NovoUsuario } from './novo-usuario';
@@ -10,10 +10,9 @@ import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator';
 @Component({
   selector: 'app-novo-usuario',
   templateUrl: './novo-usuario.component.html',
-  styleUrls: ['./novo-usuario.component.css']
+  styleUrls: ['./novo-usuario.component.css'],
 })
 export class NovoUsuarioComponent implements OnInit {
-
   novoUsuarioForm!: FormGroup;
 
   constructor(
@@ -30,14 +29,11 @@ export class NovoUsuarioComponent implements OnInit {
         fullName: ['', [Validators.required, Validators.minLength(4)]],
         userName: [
           '',
-          // Validação do campo userName
           [minusculoValidator],
-          // Executa a validação
           [this.usuarioExistenteServive.usuarioJaExite()],
         ],
         password: [''],
       },
-      // Validação do fomrulpario
       {
         validators: [usuarioSenhaIguaisValidator],
       }
@@ -45,7 +41,7 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   cadastrar() {
-    if (this.novoUsuarioForm.valid) { // Verificando se o fomrulpario está válido
+    if (this.novoUsuarioForm.valid) {
       const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
       this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
         () => {
@@ -57,5 +53,4 @@ export class NovoUsuarioComponent implements OnInit {
       );
     }
   }
-
 }

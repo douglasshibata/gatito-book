@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import jwtDecode from 'jwt-decode';
-import { BehaviorSubject } from 'rxjs';
 import { TokenService } from '../token.service';
 import { Usuario } from './usuario';
+import jwt_decode from 'jwt-decode';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
-
-  // Behavior subject é um observale que guarda estado, vai retronar o ultimo estado salvo nele
   private usuarioSubject = new BehaviorSubject<Usuario>({});
 
   constructor(private tokenService: TokenService) {
-    // verifica se tem token no local storage
     if (this.tokenService.possuiToken()) {
       this.decodificaJWT();
     }
@@ -21,11 +18,10 @@ export class UsuarioService {
 
   private decodificaJWT() {
     const token = this.tokenService.retornaToken();
-    const usuario = jwtDecode(token) as Usuario;
+    const usuario = jwt_decode(token) as Usuario;
     this.usuarioSubject.next(usuario);
   }
 
-  // retorna o subkect para quem chamar ele, mas não poderá manipular os dados, será apenas retornado o valor
   retornaUsuario() {
     return this.usuarioSubject.asObservable();
   }
@@ -35,14 +31,12 @@ export class UsuarioService {
     this.decodificaJWT();
   }
 
-  // Limpando o token
-  logout(){
-    this.tokenService.exluiToken();
+  logout() {
+    this.tokenService.excluiToken();
     this.usuarioSubject.next({});
   }
 
-  // verifica se está logado
-  estaLogado(){
+  estaLogado() {
     return this.tokenService.possuiToken();
   }
 }

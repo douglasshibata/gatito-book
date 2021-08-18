@@ -1,12 +1,44 @@
 <h4 class="text-center">Login</h4>
-<form class="form mt-4" (ngSubmit)='login()' #loginForm='ngForm'>
-  <div class="form-group m-2">
-    <input type="text" name='usuario' placeholder="Nome do Usuário" id="" class="form-control" [(ngModel)]='usuario' #campoUsuario='ngModel' required>
-    <app-mensagem mensagem="Usuário Obrigatório" *ngIf='campoUsuario.invalid  && campoUsuario.touched'></app-mensagem>
+
+<form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
+  <div class="form-group">
+    <input
+      class="form-control"
+      placeholder="Nome do usuário"
+      [(ngModel)]="usuario"
+      name="usuario"
+      #campoUsuario="ngModel"
+      required
+    />
+    <app-mensagem
+      *ngIf="campoUsuario.invalid && campoUsuario.touched"
+      mensagem="Usuário obrigatório"
+    ></app-mensagem>
   </div>
-  <div class="form-group m-2">
-    <input type="password" name='senha' placeholder="Senha do Usuário" id="" class="form-control"  [(ngModel)]='senha' #campoSenha='ngModel' required>
-    <app-mensagem mensagem="Senha Obrigatório" *ngIf='campoSenha.invalid  && campoSenha.touched'></app-mensagem>
+
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Senha"
+      [(ngModel)]="senha"
+      name="senha"
+      #campoSenha="ngModel"
+      required
+    />
+    <app-mensagem
+      *ngIf="campoSenha.invalid && campoSenha.touched"
+      mensagem="Senha obrigatória"
+    ></app-mensagem>
   </div>
-  <button type="submit" class="btn btn-primary btn-block m-2" [disabled]='loginForm.invalid'>Login</button>
+
+  <button
+    type="submit"
+    class="btn btn-primary btn-block"
+    [disabled]="loginForm.invalid"
+  >
+    Login
+  </button>
 </form>
+
+<p>Não é um usuário?<a [routerLink]="['novousuario']">Se cadastre!</a></p>
